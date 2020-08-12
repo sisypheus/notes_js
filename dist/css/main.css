@@ -19,3 +19,9 @@ p {
     justify-content: center;
     align-items: center;
 }
+
+#ajout {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
