@@ -7,12 +7,15 @@ let submit = document.getElementById('submit');
 ajout.style.display = 'none';
 
 function add_todo(title, content) {
-    let todos = document.getElementById('todos');
+    let notes = document.getElementById('notes');
 
     let node = document.createElement('p');
+    let node_title = document.createElement('h2');
     //user input sanitized with create text node function
+    node_title.appendChild(document.createTextNode(title));
     node.appendChild(document.createTextNode(content));
-    todos.appendChild(node);
+    node.prepend(node_title);
+    notes.appendChild(node);
 }
 
 button.addEventListener('click', () => {
@@ -24,14 +27,20 @@ button.addEventListener('click', () => {
         ajout.style.display = 'none';
 });
 
-let form = document.getElementById("new_todo");
-function handleForm(event) { event.preventDefault(); } 
+let form = document.getElementById("new_note");
+function handleForm(event) {
+    event.preventDefault();
+} 
 form.addEventListener('submit', handleForm);
 
 submit.addEventListener('click', () => {
-    let title = document.getElementById('todo_title').value;
-    let content = document.getElementById('todo_value').value;
+    let title = document.getElementById('note_title').value;
+    let content = document.getElementById('note_value').value;
 
     if (title != "" && content != "")
         add_todo(title, content);
+
+    document.getElementById('note_title').value = "";
+    document.getElementById('note_value').value = "";
+    ajout.style.display = 'none';
 });
