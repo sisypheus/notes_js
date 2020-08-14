@@ -17,7 +17,7 @@
 .note_container {
     display: grid;
     grid-template-areas:
-    'title'
+    'title remove'
     'content';
     justify-content: center;
 }
