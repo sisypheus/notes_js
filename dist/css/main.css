@@ -14,10 +14,20 @@
     align-items: center;
 }
 
-p {
-    display: flex;
+.note_container {
+    display: grid;
+    grid-template-areas:
+    'title'
+    'content';
     justify-content: center;
-    align-items: center;
+}
+
+.note_container p {
+    grid-area: content;
+}
+
+.note_container h2 {
+    grid-area: title;
 }
 
 #ajout {
