@@ -17,9 +17,9 @@
 .note_container {
     display: grid;
     grid-template-areas:
-    'title remove'
-    'content';
-    justify-content: center;
+    '. title . .'
+    '. . remove'
+    '. content .';
 }
 
 .note_container p {
@@ -34,4 +34,10 @@
     display: none;
     justify-content: center;
     align-items: center;
+}
+
+.note_container .remove_btn {
+    margin-left: 20px;
+    grid-area: remove;
+    font-size: 20px;
 }
