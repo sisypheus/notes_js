@@ -1,13 +1,9 @@
 let notes = [];
-let button = document.getElementById('ajouter');
 let ajout = document.getElementById('ajout');
-let submit = document.getElementById('submit');
-
 ajout.style.display = 'none';
 
 class note {
     constructor(title, content) {
-        //user input sanitized
         this.title = document.createElement('h2');
         this.title.appendChild(document.createTextNode(title));
         this.content = document.createElement('p');
@@ -38,8 +34,10 @@ function add_note(note) {
         remove.id = note.id;
         remove.className = 'remove_btn';
         remove.addEventListener('click', () => {
-            let to_delete = document.querySelector('#note'+remove.id);
-            to_delete.remove();
+            document.querySelector('#note'+remove.id).remove();
+            for (let i = 0; i < notes.length; i++)
+                if (notes[i].id == remove.id)
+                    notes.splice(i);
         });
         return remove;
     })();
@@ -54,11 +52,8 @@ function add_note(note) {
     notes_container.appendChild(div_container);
 }
 
-button.addEventListener('click', () => {
-    let ajout = document.getElementById('ajout');
-    let title = document.getElementById('note_title').value;
-    let content = document.getElementById('note_value').value;
-    
+//hide/show add note form
+document.getElementById('ajouter').addEventListener('click', () => {
     if (ajout.style.display === 'none')
         ajout.style.display = 'flex';
     else {
@@ -68,25 +63,16 @@ button.addEventListener('click', () => {
     }
 });
 
-let form = document.getElementById("new_note");
-form.addEventListener('submit', (event) => {
+document.getElementById("new_note").addEventListener('submit', (event) => {
     event.preventDefault();
-});
-
-submit.addEventListener('click', () => {
     let title = document.getElementById('note_title').value;
     let content = document.getElementById('note_value').value;
     
     if (title != "" && content != "") {
         note.increaseCount();
         notes.push(new note(title,content));
+        document.getElementById('note_title').value = "";
+        document.getElementById('note_value').value = "";
     }
-    
-    /*for (let i = 0; i < notes.length; i++) {
-        console.log(notes[i].id);
-    }*/
-    
-    document.getElementById('note_title').value = "";
-    document.getElementById('note_value').value = "";
     ajout.style.display = 'none';
 });
