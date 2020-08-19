@@ -8,6 +8,14 @@
     justify-content: center;
 }
 
+#ajout {
+    margin-top: 20px;
+}
+
+.modify_btn {
+    margin-left: 20px;
+}
+
 .buttons {
     display: flex;
     justify-content: center;

@@ -25,9 +25,20 @@ class note {
 }
 
 function add_note(note) {
-    //variables
     let notes_container = document.getElementById('notes');
+    let content_paragraph = document.createElement('p');
     let div_container = document.createElement('div');
+    let modify = ((modify) => {
+        modify = document.createElement('button');
+        modify.innerHTML = 'Modify';
+        modify.className = 'modify_btn';
+        modify.id = note.id;
+        modify.addEventListener('click', () => {
+            console.log(document.querySelector('#note'+modify.id).innerHTML);
+        });
+        return modify;
+    })();
+
     let remove = ((remove) => {
         remove = document.createElement('button');
         remove.innerHTML = 'Remove';
@@ -48,6 +59,7 @@ function add_note(note) {
     //user input sanitized with create text node function
     note.title.appendChild(remove);
     note.content.prepend(note.title);
+    note.content.appendChild(modify);
     div_container.appendChild(note.content);
     notes_container.appendChild(div_container);
 }
