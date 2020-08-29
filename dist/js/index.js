@@ -58,9 +58,10 @@ function add_note(note) {
     
     //user input sanitized with create text node function
     note.title.appendChild(remove);
-    note.content.prepend(note.title);
-    note.content.appendChild(modify);
-    div_container.appendChild(note.content);
+    note.title.appendChild(modify);
+    content_paragraph.appendChild(note.title);
+    content_paragraph.appendChild(note.content);
+    div_container.appendChild(content_paragraph);
     notes_container.appendChild(div_container);
 }
 
