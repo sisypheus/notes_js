@@ -10,6 +10,7 @@ class note {
         this.content.appendChild(document.createTextNode(content));
         this.id = note.getCount();
         this.content.id = "note_content" + this.id;
+        this.raw_content = content;
 
         add_note(this);
     }
@@ -35,8 +36,25 @@ function add_note(note) {
         modify.className = 'modify_btn';
         modify.id = note.id;
         modify.addEventListener('click', () => {
-            //console.log(document.querySelector('#note_content'+modify.id).innerHTML);
-            document.querySelector('#note_content'+modify.id).innerHTML = 'yo';
+            if (document.querySelector('#form_modify' + note.id) == null) {
+                let form = document.createElement('form');
+                let add_label = document.createElement('input');
+            
+                form.id = "form_modify" + note.id;
+                add_label.id = "input_modify" + note.id;
+                add_label.value = note.raw_content;
+            
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    let to_modify = document.querySelector('#note_content' + note.id);
+                    to_modify.innerHTML = document.getElementById('input_modify' + note.id).value.replace(/(<([^>]+)>)/gi, "");
+                    form.remove();
+                })
+            
+                form.appendChild(add_label);
+                form.style.display = 'flex';
+                notes_container.appendChild(form);
+            }
         });
         return modify;
     })();
