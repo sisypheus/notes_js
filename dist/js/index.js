@@ -9,6 +9,7 @@ class note {
         this.content = document.createElement('p');
         this.content.appendChild(document.createTextNode(content));
         this.id = note.getCount();
+        this.content.id = "note_content" + this.id;
 
         add_note(this);
     }
@@ -34,7 +35,8 @@ function add_note(note) {
         modify.className = 'modify_btn';
         modify.id = note.id;
         modify.addEventListener('click', () => {
-            console.log(document.querySelector('#note'+modify.id).innerHTML);
+            //console.log(document.querySelector('#note_content'+modify.id).innerHTML);
+            document.querySelector('#note_content'+modify.id).innerHTML = 'yo';
         });
         return modify;
     })();
@@ -55,6 +57,7 @@ function add_note(note) {
 
     div_container.className = "note_container";
     div_container.id = 'note' + note.id;
+
     
     //user input sanitized with create text node function
     note.title.appendChild(remove);
